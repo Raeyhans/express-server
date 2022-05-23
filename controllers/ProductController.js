@@ -5,23 +5,26 @@ exports.getAllProduct = (req, res) => {
 }
 
 exports.getProduct = (req, res) => {
+  const product = products.find(p => p.id === req.params.id);
     res.status(200).json({
-        id: req.params.id
+        product
     })
 }
 
 exports.productStore = (req, res) => {
-  res.status(200).send({ msg: "Berhasil menambahkan Produk" })
+  res.status(201).send({ msg: "Berhasil menambahkan Produk" })
 }
 
 exports.productUpdate = (req, res) => {
+  const product = products.find(p => p.id === req.params.id);
     res.status(200).send({ 
-        id: req.params.id,
-        msg: "Berhasil mengubah Produk" })
+      product,
+      msg: "Berhasil mengubah Produk" })
 }
 
-exports.productDelete = (req, res, next) => {
+exports.productDelete = (req, res) => {
+  const product = products.find(p => p.id === req.params.id);
     res.status(200).send({ 
-        id: req.params.id,
+        product,
         msg: "Berhasil menghapus Produk" })
 }
